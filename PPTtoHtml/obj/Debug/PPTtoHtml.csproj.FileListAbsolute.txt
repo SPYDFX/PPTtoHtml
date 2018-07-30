@@ -1,2 +1,0 @@
-G:\spydf\soft\PPTtoHtml\PPTtoHtml\bin\Debug\PPTtoHtml.exe.config
-G:\spydf\soft\PPTtoHtml\PPTtoHtml\obj\Debug\PPTtoHtml.csprojResolveAssemblyReference.cache

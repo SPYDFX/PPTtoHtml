@@ -1,0 +1,11 @@
+添加引用，COM类型库：
+Microsoft Office 12.0 Object Libray
+Microsoft Office 14.0 Object Libray
+Microsoft Office 15.0 Object Libray
+Microsoft Excel 12.0 Object Libray
+Microsoft PowerPoint 12.0 Object Libray
+Microsoft Word12.0 Object Libray
+
+以上6个
+
+VS2013
