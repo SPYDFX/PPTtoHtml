@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/FileUpload")
+}
+@section Css{
+    @Styles.Render("~/Content/FileUpload")
+}
+<div class="jumbotron">
+    <h1>上传图片</h1>
+    <div class="form-group clearfix">
+        <div class="col-lg-10 col-md-10 col-sm-10 clearfix">
+            <!-- 图片展示 -->
+            <div class="atlas-container pull-left clearfix">
+                @*<div class="atlas-content">
+                    <i class="js-del-img fm-icon ion-close-circled"></i>
+                    <div class="img-container">
+                        <img src=/assets/images/logbg.png alt="图册" />
+                    </div>
+                </div>*@
+            </div>
+            <!-- 图片上传 -->
+            <div class="upload-container pull-left">
+                <input id="fileUpload" type="file" name="" value="" multiple accept="image/png,image/gif,image/jpg,image/jpeg" />
+                <div class="fileUpload"></div>
+            </div>
+        </div>
+    </div>
+    <p><a href="#" class="btn btn-primary btn-lg">上传图片</a></p>
+</div>
+
