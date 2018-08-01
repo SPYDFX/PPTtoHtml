@@ -31,6 +31,10 @@
             } 
         })
     });
+
+    $("#btnUploadImg").click(function () {
+
+    });
 });
 var imgFilter = function (files) {
     var a = true;
@@ -57,4 +61,39 @@ var getObjectURL = function (file) {
         url = window.webkitURL.createObjectURL(file);
     }
     return url;
+};
+var UploadFile = function (imgList) {
+    var formdata = new FormData();
+    $.each(imgList, function (j, value) {//添加图片  
+        formdata.append("Files", $(value).data("img"));
+    });
+   // var BusinessId = GetBsmgBusinessId();
+    //var user = JSON.parse(localStorage.getItem("userinfo"));
+    //if (user != null) {
+    //    BusinessId = user.BusinessId;
+    //}
+    //var path = BusinessId + "\\" + $("#houseId").val();
+    //formdata.append("path", path);
+
+    $.ajax({
+        url: '/RentMG/UploadFile',
+        type: 'POST',
+        cache: false,
+        data: formdata,
+        processData: false, // 关键点
+        contentType: false, // 关键点
+        success: function (result) {
+            if (result.Check) {
+                //AddHouse(imgList);//图片上传成功后在提交数据
+                alert("操作成功");
+                window.location.href = "/RentMG/HouseList";
+            }
+            else {
+                alert("失败");
+            }
+            var file = $("#doc-form-file")
+            file.after(file.clone().val(""));
+            file.remove();
+        }
+    });
 };
