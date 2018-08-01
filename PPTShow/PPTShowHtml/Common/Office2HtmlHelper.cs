@@ -72,7 +72,7 @@ namespace PPTShowHtml.Common
             writeHtml(strDestinationFile);
         }
 
-        public static void writeHtml(string path,string htmlName)
+        public static void writeHtml(string path,string htmlName="")
         {
             DirectoryInfo dir = new DirectoryInfo(path);   //你的文件夹未知
             FileStream fs = new FileStream(dir.FullName + "\\"+ htmlName+ ".html", FileMode.Create, FileAccess.Write);//创建HTML文件

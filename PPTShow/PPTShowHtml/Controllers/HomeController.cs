@@ -46,7 +46,7 @@ namespace PPTShowHtml.Controllers
             {
                 var files = System.Web.HttpContext.Current.Request.Files;
                 //var imgpath = System.Web.HttpContext.Current.Request["path"].ToString();
-                var imgpath = DateTime.Now.ToString("yyyyMMddHHmmss");
+                var imgpath = DateTime.Now.ToString("yyyyMMdd") +"\\"+ DateTime.Now.ToString("yyyyMMddHHmmss");
                 int number = 0;
                 List<Stream> streams = new List<Stream>();
                // Dictionary<string, Stream> filedic = new Dictionary<string, Stream>();
@@ -69,7 +69,7 @@ namespace PPTShowHtml.Controllers
                 {
                     check.msg = "上传成功！";
                     check.success = true;
-                    Office2HtmlHelper.writeHtml();
+                    Office2HtmlHelper.writeHtml(path);
                 }
                 else
                 {
