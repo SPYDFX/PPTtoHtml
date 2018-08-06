@@ -72,14 +72,22 @@ namespace PPTShowHtml.Common
             writeHtml(strDestinationFile);
         }
 
-        public static void writeHtml(string path,string htmlName="")
+        public static string writeHtml(string path,string htmlName="")
         {
+            if(string.IsNullOrWhiteSpace(htmlName))
+            {
+                htmlName = DateTime.Now.ToString("yyyyMMddhhmmss");
+            }
             DirectoryInfo dir = new DirectoryInfo(path);   //你的文件夹未知
             FileStream fs = new FileStream(dir.FullName + "\\"+ htmlName+ ".html", FileMode.Create, FileAccess.Write);//创建HTML文件
             StreamWriter sw = new StreamWriter(fs);
             FileInfo[] files = dir.GetFiles();
 
-            sw.Write("<html></html><head><meta charset = \"utf-8\" /></head><body>");//写入头文件和编码声明
+            sw.Write("<!DOCTYPE HTML><html></html><head><meta charset = \"utf-8\" />");//写入头文件和编码声明
+            sw.Write("<link rel=\"stylesheet\" type=\"text / css\" href=\"../Content/bootstrap.css\">");//写入头文件和编码声明
+            sw.Write("<link rel=\"stylesheet\" type=\"text / css\" href=\"../Content/bootstrap.min.css\">");//写入头文件和编码声明
+            //sw.Write("<script type=\"text / javascript\" src=\"attack.js\"></script>");//写入头文件和编码声明
+            sw.Write("</head><body>");//写入头文件和编码声明
             foreach (FileInfo f in files)    //遍历文件
             {
 
@@ -92,7 +100,7 @@ namespace PPTShowHtml.Common
             sw.Write("</body></html>"); //写入结束标签
             sw.Close();
             fs.Close();//关闭文件流
-
+            return htmlName + ".html";
             
         }
     }

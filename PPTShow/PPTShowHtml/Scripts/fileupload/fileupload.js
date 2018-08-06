@@ -24,7 +24,7 @@
                 html += '<div class="atlas-content">';
                 html += '<i class="js-del-img fm-icon ion-close-circled"></i>';
                 html += '<div class="img-container" data-name="' + files[i].name + '">';
-                html += '<img src=' + objUrl + ' alt="图册" data-flag="new"  data-img=' + item + '/>';
+                html += "<img data-flag='new' src='" + objUrl + "' data-img='" + item + "'>";
                 html += '</div>';
                 html += '</div>';
                 $('.atlas-container').append(html);                     // 将缩略图片写入
@@ -33,7 +33,10 @@
     });
 
     $("#btnUploadImg").click(function () {
-
+        var imgList = $("img[data-flag='new']");
+        if (imgList != null && imgList.length > 0) {
+            UploadFile(imgList);
+        }
     });
 });
 var imgFilter = function (files) {
@@ -64,8 +67,9 @@ var getObjectURL = function (file) {
 };
 var UploadFile = function (imgList) {
     var formdata = new FormData();
+    
     $.each(imgList, function (j, value) {//添加图片  
-        formdata.append("Files", $(value).data("img"));
+        formdata.append("file", $(value).data("img"));
     });
    // var BusinessId = GetBsmgBusinessId();
     //var user = JSON.parse(localStorage.getItem("userinfo"));
@@ -76,22 +80,22 @@ var UploadFile = function (imgList) {
     //formdata.append("path", path);
 
     $.ajax({
-        url: '/RentMG/UploadFile',
+        url: '/Home/UploadFile',
         type: 'POST',
         cache: false,
         data: formdata,
         processData: false, // 关键点
         contentType: false, // 关键点
         success: function (result) {
-            if (result.Check) {
+            if (result.success) {
                 //AddHouse(imgList);//图片上传成功后在提交数据
-                alert("操作成功");
-                window.location.href = "/RentMG/HouseList";
+                alert("操作成功" + result.data);
+                //window.location.href = "/RentMG/HouseList";
             }
             else {
-                alert("失败");
+                alert(result.msg);
             }
-            var file = $("#doc-form-file")
+            var file = $("#fileUpload")
             file.after(file.clone().val(""));
             file.remove();
         }
