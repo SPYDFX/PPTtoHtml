@@ -87,17 +87,17 @@ namespace PPTShowHtml.Common
             sw.Write("<link rel=\"stylesheet\" type=\"text / css\" href=\"../Content/bootstrap.css\">");//写入头文件和编码声明
             sw.Write("<link rel=\"stylesheet\" type=\"text / css\" href=\"../Content/bootstrap.min.css\">");//写入头文件和编码声明
             //sw.Write("<script type=\"text / javascript\" src=\"attack.js\"></script>");//写入头文件和编码声明
-            sw.Write("</head><body>");//写入头文件和编码声明
+            sw.Write("</head><body><div class='container'>");//写入头文件和编码声明
             foreach (FileInfo f in files)    //遍历文件
             {
 
                 var strExtension = f.Extension.ToLower();
                 if (strExtension == ".png" || strExtension == ".jpg" || strExtension == ".bmp")    //如果是图片 则写入HTML代码
                 {
-                    sw.Write("<img src=\"" + f.Name + "\" />\r\n");
+                    sw.Write("<div class='col-lg-12 col-md-12 col-sm-12'><img src=\"" + f.Name + "\" /></div>\r\n");
                 }
             }
-            sw.Write("</body></html>"); //写入结束标签
+            sw.Write("</div></body></html>"); //写入结束标签
             sw.Close();
             fs.Close();//关闭文件流
             return htmlName + ".html";

@@ -24,10 +24,12 @@
                 html += '<div class="atlas-content">';
                 html += '<i class="js-del-img fm-icon ion-close-circled"></i>';
                 html += '<div class="img-container" data-name="' + files[i].name + '">';
-                html += "<img data-flag='new' src='" + objUrl + "' data-img='" + item + "'>";
+                html += "<img data-flag='new' src='" + objUrl + "' data-file='" + item + "'>";
                 html += '</div>';
                 html += '</div>';
                 $('.atlas-container').append(html);                     // 将缩略图片写入
+                //var img = $(".atlas-container>div>div").last().children("file");//获取新生成的img标签  
+                //img.data("file", item);
             } 
         })
     });
@@ -66,24 +68,21 @@ var getObjectURL = function (file) {
     return url;
 };
 var UploadFile = function (imgList) {
-    var formdata = new FormData();
+   // var formdata = null;
     
-    $.each(imgList, function (j, value) {//添加图片  
-        formdata.append("file", $(value).data("img"));
-    });
-   // var BusinessId = GetBsmgBusinessId();
-    //var user = JSON.parse(localStorage.getItem("userinfo"));
-    //if (user != null) {
-    //    BusinessId = user.BusinessId;
-    //}
-    //var path = BusinessId + "\\" + $("#houseId").val();
-    //formdata.append("path", path);
-
+    //$.each(imgList, function (j, value) {//添加图片  
+    //    //formdata.append("file", $(value).data("file"));
+    //    formdata = new FormData($(value).data("file"))
+    //});
+    var formdata = new FormData($("#postForm")[0]);
+    //formdata.append("Files",$("#postForm")[0]);  //$('#fileUpload')[0].files[0]
+   // var formdata = new FormData($('#fileUpload')[0].files[0]);
     $.ajax({
-        url: '/Home/UploadFile',
-        type: 'POST',
+        url: "/Home/UploadFile",
+        type: "POST",
         cache: false,
         data: formdata,
+        async: false,
         processData: false, // 关键点
         contentType: false, // 关键点
         success: function (result) {
@@ -95,9 +94,27 @@ var UploadFile = function (imgList) {
             else {
                 alert(result.msg);
             }
-            var file = $("#fileUpload")
-            file.after(file.clone().val(""));
-            file.remove();
+            //var file = $("#fileUpload")
+            //file.after(file.clone().val(""));
+            //file.remove();
         }
     });
 };
+
+function btnPost() {
+    // var formData = new FormData($("#postForm")[0]);
+    //var formData = new FormData($('#file')[0].files[0]);
+   
+    $.ajax({
+        url: "/Home/UploadFile",
+        data: formData,
+        type: "POST",
+        async: false,
+        contentType: false,
+        processData: false,
+        success: function (msg) {
+        },
+        error: function (e) {
+        }
+    });
+}

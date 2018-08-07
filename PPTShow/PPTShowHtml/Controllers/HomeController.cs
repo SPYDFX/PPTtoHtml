@@ -45,7 +45,6 @@ namespace PPTShowHtml.Controllers
             try
             {
                 var files = System.Web.HttpContext.Current.Request.Files;
-               // var files = System.Web.HttpContext.Current.Request;
                 if (files.Count==0)
                 {
                     check.msg = "请选择要上传的图片！";
