@@ -11,4 +11,16 @@ namespace PPTShowHtml.Models
         public bool success { get; set; }
         public T data { get; set; }
     }
+
+
+    public class BaseResult
+    {
+        public string msg { get; set; }
+        public bool success { get; set; }
+    }
+    public class PersonRsult : BaseResult
+    {
+
+    }
+
 }

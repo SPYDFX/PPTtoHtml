@@ -84,8 +84,8 @@ namespace PPTShowHtml.Common
             FileInfo[] files = dir.GetFiles();
 
             sw.Write("<!DOCTYPE HTML><html></html><head><meta charset = \"utf-8\" />");//写入头文件和编码声明
-            sw.Write("<link rel=\"stylesheet\" type=\"text / css\" href=\"../Content/bootstrap.css\">");//写入头文件和编码声明
-            sw.Write("<link rel=\"stylesheet\" type=\"text / css\" href=\"../Content/bootstrap.min.css\">");//写入头文件和编码声明
+            sw.Write("<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../Content/bootstrap.css\">");//写入头文件和编码声明
+            sw.Write("<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../Content/bootstrap.min.css\">");//写入头文件和编码声明
             //sw.Write("<script type=\"text / javascript\" src=\"attack.js\"></script>");//写入头文件和编码声明
             sw.Write("</head><body><div class='container'>");//写入头文件和编码声明
             foreach (FileInfo f in files)    //遍历文件
@@ -94,7 +94,7 @@ namespace PPTShowHtml.Common
                 var strExtension = f.Extension.ToLower();
                 if (strExtension == ".png" || strExtension == ".jpg" || strExtension == ".bmp")    //如果是图片 则写入HTML代码
                 {
-                    sw.Write("<div class='col-lg-12 col-md-12 col-sm-12'><img src=\"" + f.Name + "\" /></div>\r\n");
+                    sw.Write("<div class='col-md-offset-2 col-md-8 col-sm-12'><img src=\"" + f.Name + "\"  style='width:100%;'/></div>\r\n");
                 }
             }
             sw.Write("</div></body></html>"); //写入结束标签

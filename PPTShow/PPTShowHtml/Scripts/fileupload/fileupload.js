@@ -2,7 +2,7 @@
     $('#fileUpload').on('change', function (obj) {
         var files = obj.target.files || obj.dataTransfer.files;//js获取所有文件  
         if (imgFilter(files) == false) {
-            return flase;
+            return ;
         }
 
         //判断上传的图片跟页面上的图片，如果已经上传了，不需要重新上传  
@@ -24,10 +24,10 @@
                 html += '<div class="atlas-content">';
                 html += '<i class="js-del-img fm-icon ion-close-circled"></i>';
                 html += '<div class="img-container" data-name="' + files[i].name + '">';
-                html += "<img data-flag='new' src='" + objUrl + "' data-file='" + item + "'>";
+                html += "<img data-flag='new' src='" + objUrl + "' data-file='" + item + "' data-img='"+files[i]+"'>";
                 html += '</div>';
                 html += '</div>';
-                $('.atlas-container').append(html);                     // 将缩略图片写入
+                $('.atlas-container').append(html);                     // 将缩略图片写入   
                 //var img = $(".atlas-container>div>div").last().children("file");//获取新生成的img标签  
                 //img.data("file", item);
             } 
@@ -88,8 +88,10 @@ var UploadFile = function (imgList) {
         success: function (result) {
             if (result.success) {
                 //AddHouse(imgList);//图片上传成功后在提交数据
-                alert("操作成功" + result.data);
+                //alert("操作成功" + result.data);
                 //window.location.href = "/RentMG/HouseList";
+
+                window.location.href = result.data;
             }
             else {
                 alert(result.msg);
@@ -100,7 +102,6 @@ var UploadFile = function (imgList) {
         }
     });
 };
-
 function btnPost() {
     // var formData = new FormData($("#postForm")[0]);
     //var formData = new FormData($('#file')[0].files[0]);

@@ -38,7 +38,7 @@ namespace PPTShowHtml.Controllers
         /// 上传图片
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
+       [HttpPost]
         public ActionResult UploadFile()
         {
             Result<string> check = new Result<string>();
@@ -79,7 +79,8 @@ namespace PPTShowHtml.Controllers
                     var re= Office2HtmlHelper.writeHtml(path, HtmlName);
                     if(!string.IsNullOrWhiteSpace(re))
                     {
-                        check.data = path +"\\"+ re;
+                       // check.data = "http://autohtml.spydf.com\\" + "Images\\" + imgpath +"\\"+ re;
+                       check.data = "http://localhost:52314\\" + "Images\\" + imgpath + "\\" + re;
                     }  
                 }
                 else
